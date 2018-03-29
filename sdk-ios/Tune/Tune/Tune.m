@@ -844,10 +844,12 @@
 
 + (BOOL)handleContinueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *restorableObjects))restorationHandler {
 #if TARGET_OS_IOS
-    if ([userActivity.activityType isEqualToString:CSSearchableItemActionType]) {
-        NSString *searchIndexUniqueId = userActivity.userInfo[CSSearchableItemActivityIdentifier];
-        return [Tune handleOpenURL:[NSURL URLWithString:searchIndexUniqueId]
-                 sourceApplication:@"spotlight"];
+    if (@available(iOS 9, *)) {
+        if ([userActivity.activityType isEqualToString:CSSearchableItemActionType]) {
+            NSString *searchIndexUniqueId = userActivity.userInfo[CSSearchableItemActivityIdentifier];
+            return [Tune handleOpenURL:[NSURL URLWithString:searchIndexUniqueId]
+                     sourceApplication:@"spotlight"];
+        }
     }
 #endif
     if ([userActivity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb] && userActivity.webpageURL) {
