@@ -36,7 +36,7 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 
-#define TUNEVERSION @"5.1.0.20180413202002"
+#define TUNEVERSION @"5.1.0.20180413213302"
 
 
 @protocol TuneDelegate;
