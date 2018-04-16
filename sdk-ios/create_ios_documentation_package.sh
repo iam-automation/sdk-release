@@ -1,11 +1,14 @@
 # To run script, run this script within the sdk-ios folder:
-# ./create_ios_documentation_package.sh
+# ./create_ios_documentation_package.sh <SDK version number i.e. 5.1.0>
 
 #!/bin/bash
 
 PUBLIC_REPO_NAME="TuneOSS"
-LATEST_GIT_TAG=$(git describe --abbrev=0 --tags)
-SDK_VERSION_NUMBER=${LATEST_GIT_TAG}
+SDK_VERSION_NUMBER=$1
+LATEST_GIT_TAG=${SDK_VERSION_NUMBER}
+# May be able to use these variables instead once we've incorporated this script into Mario's iOS automation process:
+# LATEST_GIT_TAG=$(git describe --abbrev=0 --tags)
+# SDK_VERSION_NUMBER=${LATEST_GIT_TAG}
 DOCSET_NAMESPACE="com.tune.Tune"
 
 #  Creates the JazzyDocs html for the version number (see https://github.com/realm/jazzy for framework documentation)
@@ -22,8 +25,8 @@ jazzy \
 --undocumented-text "" \
 --author Tune, Inc. \
 --author_url https://developers.tune.com/ \
---github_url https://github.com/${PUBLIC_REPO_NAME}/sdk-release/tree/master/sdk-ios \
---github-file-prefix https://github.com/${PUBLIC_REPO_NAME}/sdk-release/blob/ios-${LATEST_GIT_TAG}/sdk-ios/ \
+--github_url https://github.com/${PUBLIC_REPO_NAME}/sdk-release/tree/${LATEST_GIT_TAG}/sdk-ios \
+--github-file-prefix https://github.com/${PUBLIC_REPO_NAME}/sdk-release/blob/${LATEST_GIT_TAG}/sdk-ios \
 --module Tune \
 --module-version ${LATEST_GIT_TAG}
 # --skip-documentation
@@ -49,7 +52,8 @@ fi
 # TODO: Issues for Jennifer and Mario to address when incorporating into the automated build script
 
 # 1. Need to account for incorrect git tags we wouldn't want to generate with
-# and have a backup (i.e. possibly a version number entered as an argument to use?)
+# and have a backup (i.e. possibly a version number entered as an argument to use,
+# even in the fully incorporated script?)
 
 # 2. When the full documentation is run for a version, running with --skip-documentation
 # does not just overwrite the json file. It overwrites the folder containing the documentation files.
