@@ -9,7 +9,8 @@
 #import "TuneExperimentDetails.h"
 
 /**
- Contains information about an In App Message experiment.
+ * Contains information about an In App Message experiment.
+ *
  */
 @interface TuneInAppMessageExperimentDetails : TuneExperimentDetails
 
