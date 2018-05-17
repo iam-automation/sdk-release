@@ -9,9 +9,9 @@
 #import "TuneExperimentDetails.h"
 
 /**
- * Contains information about an In App Message experiment.
- *
+ Contains information about an In App Message experiment.
  */
+DEPRECATED_MSG_ATTRIBUTE("IAM functionality. This class will be removed in Tune iOS SDK v6.0.0")
 @interface TuneInAppMessageExperimentDetails : TuneExperimentDetails
 
 @end

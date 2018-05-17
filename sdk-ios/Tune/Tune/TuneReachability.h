@@ -67,6 +67,8 @@ FOUNDATION_EXPORT NSString *kTuneReachabilityChangedNotification;
 
 #if !TARGET_OS_WATCH
 
++ (instancetype)sharedInstance;
+
 /*!
  * Use to check the reachability of a given host name.
  */
@@ -95,6 +97,7 @@ FOUNDATION_EXPORT NSString *kTuneReachabilityChangedNotification;
 - (void)stopNotifier;
 
 - (TuneNetworkStatus)currentReachabilityStatus;
+- (NSString *)translateReachabilityStatus:(TuneNetworkStatus)status;
 
 /*!
  * WWAN may be available, but not active until a connection has been established. WiFi may require a connection for VPN on Demand.
