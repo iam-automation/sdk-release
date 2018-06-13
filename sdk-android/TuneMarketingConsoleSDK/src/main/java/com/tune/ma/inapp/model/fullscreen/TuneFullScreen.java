@@ -30,11 +30,10 @@ import java.net.URLEncoder;
 
 /**
  * Created by johng on 2/21/17.
- */
-
-/**
  * TuneFullScreen is a TuneInAppMessage subclass that handles displaying full screen messages
+ * @deprecated IAM functionality. This method will be removed in Tune Android SDK v6.0.0
  */
+@Deprecated
 public class TuneFullScreen extends TuneInAppMessage {
     public static final String ORIENTATION = "ORIENTATION";
     public static final String MESSAGE_ID = "MESSAGE_ID";
@@ -221,12 +220,10 @@ public class TuneFullScreen extends TuneInAppMessage {
         webView.setVisibility(View.INVISIBLE);
         webView.setBackgroundColor(Color.TRANSPARENT);
         // Turn off hardware acceleration when possible, it causes WebView loading issues
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            } else {
-                webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-            }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        } else {
+            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
         // Not default before API level 11
         webView.setScrollBarStyle(WebView.SCROLLBARS_INSIDE_OVERLAY);

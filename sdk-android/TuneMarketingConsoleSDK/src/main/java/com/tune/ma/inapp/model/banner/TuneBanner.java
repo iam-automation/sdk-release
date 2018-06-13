@@ -40,8 +40,9 @@ import static com.tune.ma.inapp.TuneInAppMessageConstants.MESSAGE_LOCATION_KEY;
 
 /**
  * Created by johng on 3/6/17.
+ * @deprecated IAM functionality. This method will be removed in Tune Android SDK v6.0.0
  */
-
+@Deprecated
 public class TuneBanner extends TuneInAppMessage {
     public enum Location {
         TOP,
@@ -59,7 +60,9 @@ public class TuneBanner extends TuneInAppMessage {
     /**
      * Runnable to dismiss the banner after duration has passed
      * Gets cancelled if the banner is clicked or reloaded
+     * @deprecated IAM functionality. This method will be removed in Tune Android SDK v6.0.0
      */
+    @Deprecated
     public class DismissRunnable implements Runnable {
         @Override
         public void run() {
@@ -204,12 +207,10 @@ public class TuneBanner extends TuneInAppMessage {
 
         webView.setBackgroundColor(Color.TRANSPARENT);
         // Turn off hardware acceleration when possible, it causes WebView loading issues
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            } else {
-                webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-            }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        } else {
+            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
         webView.setVisibility(View.GONE);
         // Not default before API level 11
@@ -261,9 +262,7 @@ public class TuneBanner extends TuneInAppMessage {
             public void onPageFinished(WebView view, String url) {
                 // Make WebView visible
                 webView.setVisibility(View.VISIBLE);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {
-                    webView.animate().alpha(1.0f);
-                }
+                webView.animate().alpha(1.0f);
 
                 if (!isPreloaded()) {
                     processOpen(TuneActivity.getLastActivity());

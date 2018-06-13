@@ -20,7 +20,9 @@ import java.util.Set;
 
 /**
  * Base class for all analytics events.
+ * @deprecated IAM functionality. This method will be removed in Tune Android SDK v6.0.0
  */
+@Deprecated
 public abstract class TuneAnalyticsEventBase {
     protected static final String APPLICATION_CATEGORY = "Application";
     static final String CUSTOM_CATEGORY = "Custom";
@@ -57,10 +59,10 @@ public abstract class TuneAnalyticsEventBase {
     private List<TuneAnalyticsVariable> profile;
 
     private double sessionTime = -1;
-    private double timeStamp = -1;
+    private long timeStamp = -1L;
 
     public TuneAnalyticsEventBase() {
-        this.timeStamp = System.currentTimeMillis() / 1000.0;
+        this.timeStamp = System.currentTimeMillis() / 1000L;
 
         if (TuneManager.getInstance() != null) {
             if (TuneManager.getInstance().getProfileManager() != null) {
@@ -146,7 +148,7 @@ public abstract class TuneAnalyticsEventBase {
         this.tags.addAll(tags);
     }
 
-    public double getTimeStamp() {
+    public long getTimeStamp() {
         return timeStamp;
     }
 

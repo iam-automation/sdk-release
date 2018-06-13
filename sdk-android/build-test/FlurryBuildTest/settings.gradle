@@ -1,0 +1,2 @@
+include ':app', ':TuneMarketingConsoleSDK'
+project(':TuneMarketingConsoleSDK').projectDir = new File(settingsDir, '../../TuneMarketingConsoleSDK')
